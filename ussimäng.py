@@ -21,3 +21,7 @@ ekraan.fill(valge)
 pygame.display.update()
 pygame.display.set_caption("Ussimäng")
 
+#Fondid
+vaikefont=pygame.font.SysFont("calibri",30)
+keskminefont=pygame.font.SysFont("calibri",50)
+suurfont=pygame.font.SysFont("calibri",60)
