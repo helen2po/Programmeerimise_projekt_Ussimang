@@ -1,1 +1,1 @@
-Kodutöö Programmeerimises. Ussimäng
+Projekt Programmeerimises. Ussimäng
