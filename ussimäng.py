@@ -25,3 +25,25 @@ pygame.display.set_caption("Ussimäng")
 vaike_font=pygame.font.SysFont("calibri",30)
 keskmine_font=pygame.font.SysFont("calibri",50)
 suur_font=pygame.font.SysFont("calibri",60)
+
+def mangu_algus():
+    algus=True
+    while algus:
+        for event in pygame.event.get():
+            if event.type==pygame.QUIT:
+                pygame.quit
+
+            if event.type==pygame.KEYDOWN:
+                if event.key==pygame.K_s:
+                    intro=False
+                if event.key==pygame.K_q:
+                    pygame.quit
+                    quit()
+        prindi_ekraanile("Tere tulemast mängima ussimängu!", punane, -170, "suur")
+        prindi_ekraanile("Selles mängus pead söötma ussi ja seeläbi teda kasvatama.", must, -90, "väike")
+        prindi_ekraanile("Mängu alustamiseks vajuta ''s''", must, -65, "väike")
+        prindi_ekraanile("Pausiks vajuta ''p''", must, -32, "väike")
+        prindi_ekraanile("ning mängu lõpetamiseks vajuta ''q''", must, -2, "väike")
+        prindi_ekraanile("Mäng saab läbi, kui põrkad ussiga vastu seina või vastu ussisaba", must, 50, "väike")
+        
+        pygame.display.update()
