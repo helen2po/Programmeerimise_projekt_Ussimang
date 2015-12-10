@@ -60,14 +60,15 @@ def prindi_ekraanile(tekst, värv, y_nihe, suurus):
     ekraan.blit(teksti_valimus,valjastatud_tekst)
 
 
-
-#def segment(x,y):
+#ussi_pea=pygame.image.load("nyancat.png")
+#ekraan.blit(ussi_pea,(120,80))
+#ristkylik=pygame.Rect(100,0,100,100) #teeb ristküliku, mille vasak ülemine nurk on x_koord=100, y_koord=0, laius=100, kõrgus=100
 #    
 #
 #    return()
 #segmendi_laius=10
 #segmendi_korgus=10
-#ussi_asukoht=[]
+#ussi_keha=[]
 #def uss():
 #    for i in range(4):
 #        ussi_x=400-segmendi_laius*i
