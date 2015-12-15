@@ -60,21 +60,42 @@ def prindi_ekraanile(tekst, värv, y_nihe, suurus):
     ekraan.blit(teksti_valimus,valjastatud_tekst)
 
 
-#ussi_pea=pygame.image.load("nyancat.png")
-#ekraan.blit(ussi_pea,(120,80))
-#ristkylik=pygame.Rect(100,0,100,100) #teeb ristküliku, mille vasak ülemine nurk on x_koord=100, y_koord=0, laius=100, kõrgus=100
-#    
-#
-#    return()
-#segmendi_laius=10
-#segmendi_korgus=10
-#ussi_keha=[]
-#def uss():
-#    for i in range(4):
-#        ussi_x=400-segmendi_laius*i
-#        ussi_y=300
-#        ussi_segment=segment(ussi_x,ussi_y)
-#        ussi_asukoht.append(ussi_segment)
+ussi_pea=pygame.image.load("nyancat.png")
+toit=pygame.image.load("vikerkaar.png")
+ussi_saba=pygame.image.load("vikerkaare_saba.png")
+#ekraan.blit(ussi_pea,(ussi_x,ussi_y))
+
+segmendi_laius=25
+segmendi_korgus=25
+
+ussi_pea=[[400,300]]
+
+mangu_algus()
+while True:
+    for event in pygame.event.get():
+        if event.type==QUIT:
+            pygame.quit()
+        elif event.type==pygame.KEYDOWN:
+            if event.key==pygame.K_RIGHT:
+                ussi_pea[0][0]+=segmendi_laius
+                print("right")
+            if event.key==pygame.K_LEFT:
+                ussi_pea[0][0]-=segmendi_laius
+                print("left")
+            if event.key==pygame.K_UP:
+                ussi_pea[0][1]-=segmendi_korgus
+                print("up")
+            if event.key==pygame.K_DOWN:
+                ussi_pea[0][1]+=segmendi_korgus
+                print("down")
+        ekraan.blit(taust,(0,0))
+        
+    #joonista uss, blit pea jaoks, draw.rect saba jaoks
+        for i in ussi_pea:
+            ussi_segment=pygame.Rect(ussi_pea[0][0],ussi_pea[0][1],segmendi_laius,segmendi_korgus) #teeb ristküliku, mille vasak ülemine nurk on x_koord=100, y_koord=0, laius=100, kõrgus=100
+            pygame.draw.rect(ekraan,must,ussi_segment)
+           
+    pygame.display.update()
 
 #def toidu_asukoht():
 #    ussi_asukoht=[(x1,y1),(x2,y2)]
