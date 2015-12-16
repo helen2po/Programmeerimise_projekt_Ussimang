@@ -71,40 +71,55 @@ segmendi_korgus=25
 ussi_pea=[[400,300]]
 
 mangu_algus()
-while True:
+mang=True
+while mang:
     for event in pygame.event.get():
         if event.type==QUIT:
             pygame.quit()
         elif event.type==pygame.KEYDOWN:
             if event.key==pygame.K_RIGHT:
-                ussi_pea[0][0]+=segmendi_laius
+                ussi_pea[0]+=segmendi_laius
                 print("right")
             if event.key==pygame.K_LEFT:
-                ussi_pea[0][0]-=segmendi_laius
+                ussi_pea[0]-=segmendi_laius
                 print("left")
             if event.key==pygame.K_UP:
-                ussi_pea[0][1]-=segmendi_korgus
+                ussi_pea[1]-=segmendi_korgus
                 print("up")
             if event.key==pygame.K_DOWN:
-                ussi_pea[0][1]+=segmendi_korgus
+                ussi_pea[1]+=segmendi_korgus
                 print("down")
-        ekraan.blit(taust,(0,0))
-        
-    #joonista uss, blit pea jaoks, draw.rect saba jaoks
-        for i in ussi_pea:
-            ussi_segment=pygame.Rect(ussi_pea[0][0],ussi_pea[0][1],segmendi_laius,segmendi_korgus) #teeb ristküliku, mille vasak ülemine nurk on x_koord=100, y_koord=0, laius=100, kõrgus=100
-            pygame.draw.rect(ekraan,must,ussi_segment)
-           
-    pygame.display.update()
+            if event.key==pygame.K_q:
+                print("quit")
+                pygame.quit()
+            ekraan.blit(taust,(0,0))
+            
+            print(ussi_saba)
+            print(ussi_pea)
+            if toidu_asukoht[0]==ussi_pea[0] and toidu_asukoht[1]==ussi_pea[1]:
+                toidu_asukoht=genereeri_toidu_asukoht()
+                ussi_saba.insert(0,(ussi_pea[0],ussi_pea[1]))
+                if toidu_asukoht in ussi_pea or toidu_asukoht in ussi_saba:
+                    toidu_asukoht=genereeri_toidu_asukoht()            
+                toit=pygame.Rect(toidu_asukoht[0],toidu_asukoht[1],segmendi_laius,segmendi_korgus)
+                pygame.draw.rect(ekraan,punane,toit)
+            else:
+                ussi_saba.pop()
+                ussi_saba.insert(0,(ussi_pea[0],ussi_pea[1]))
+                toit=pygame.Rect(toidu_asukoht[0],toidu_asukoht[1],segmendi_laius,segmendi_korgus)
+                pygame.draw.rect(ekraan,punane,toit)
 
-#def toidu_asukoht():
-#    ussi_asukoht=[(x1,y1),(x2,y2)]
-#    while True:
-#        toidu_asukoht=(random.randint(0,800),random.randint(0,600))
-#        if toidu_asukoht not in ussi_asukoht:
-#            genereeri_toit(x,y)
-#            break
+            for i in ussi_saba:
+                saba_segment=pygame.Rect(i[0],i[1],segmendi_laius,segmendi_korgus)
+                pygame.draw.rect(ekraan,must,saba_segment)
+            
+            pea=pygame.Rect(ussi_pea[0],ussi_pea[1],segmendi_laius,segmendi_korgus)
+            pygame.draw.rect(ekraan,roheline,pea) 
+            
+        pygame.display.update()
+        if ussi_pea in ussi_saba or ussi_pea[0]>775 or ussi_pea[0]<0 or ussi_pea[1]>575 or ussi_pea[1]<0:  #TODO improve
+            prindi_ekraanile("Get rekt, skrub.", must, -90, "keskmine")
+            prindi_ekraanile("Pls nerf", must, -55, "väike")
+            pygame.display.update()
+            mang=False
 
-#    toidu_x_koord=random.randint(0,600)
-#    toidu_y_koord=random.randint(0,800)
-#    return(toidu_x_koord,toidu_y_koord)
